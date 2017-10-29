@@ -1,2 +1,3 @@
-# newscrape
-An application for scraping news and saving notes.
+
+This is a news scraper with options for leaving notes and such....
+
