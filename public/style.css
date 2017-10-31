@@ -1,6 +1,6 @@
 body { 
   background-color: royalblue;
-  background-image: url("../Images/newspaper.jpg");
+  background-image: url("/Images/newspaper.jpg");
   background-size: cover;
   color: #ddd;
 }
@@ -36,4 +36,16 @@ textarea {
 img {
   width: 100%;
   float: center;
+}
+
+button {
+  height: 75px;
+  width: 200px;
+  float: right;
+  margin-top: 50px;
+  margin-right: 100px;
+  border: none;
+  font-size: 24px;
+  font-family: times;
+  border-radius; 40px;
 }
