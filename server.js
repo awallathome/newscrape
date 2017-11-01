@@ -43,29 +43,38 @@ app.get("/scrape", function(req, res) {
     var $ = cheerio.load(response.data);
 
     // Now, we grab every h2 within an article tag, and do the following:
-    $("article h2").each(function(i, element) {
+    $(".media__link").each(function(i, element) {
+      console.log($(element).text().trim());
+
+      if ($(element).attr("href").trim().charAt(0) === "/") {
+        console.log("http://www.bbc.com" + $(element).attr("href"));
+      }
+      else {
+        console.log($(element).attr("href"));
+      }
+
       // Save an empty result object
       var result = {};
 
       // Add the text and href of every link, and save them as properties of the result object
-      result.title = $(this)
-        .children("a")
-        .text();
-      result.link = $(this)
-        .children("a")
-        .attr("href");
+    //   result.title = $(this)
+    //     .children("a")
+    //     .text();
+    //   result.link = $(this)
+    //     .children("a")
+    //     .attr("href");
 
-      // Create a new Article using the `result` object built from scraping
-      db.Article
-        .create(result)
-        .then(function(dbArticle) {
-          // If we were able to successfully scrape and save an Article, send a message to the client
-          res.send("Scrape Complete");
-        })
-        .catch(function(err) {
-          // If an error occurred, send it to the client
-          res.json(err);
-        });
+    //   // Create a new Article using the `result` object built from scraping
+    //   db.Article
+    //     .create(result)
+    //     .then(function(dbArticle) {
+    //       // If we were able to successfully scrape and save an Article, send a message to the client
+    //       res.send("Scrape Complete");
+    //     })
+    //     .catch(function(err) {
+    //       // If an error occurred, send it to the client
+    //       res.json(err);
+    //     });
     });
   });
 });
@@ -73,6 +82,7 @@ app.get("/scrape", function(req, res) {
 // Route for getting all Articles from the db
 app.get("/articles", function(req, res) {
   // Grab every document in the Articles collection
+  
   db.Article
     .find({})
     .then(function(dbArticle) {
